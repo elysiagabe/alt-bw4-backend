@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
-//auth middleware
-//auth router
+const authenticator = require('../auth/authenticator');
+const authRouter = require('../auth/auth-router');
 //recipe router...
 
 const server = express();
@@ -12,7 +12,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-//use auth router
+server.use('/api/auth', authRouter);
 //use recipe router...
 
 server.get('/', (req, res) => {
